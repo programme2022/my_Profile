@@ -74,7 +74,7 @@
         <a href="#socials">روابط التواصل</a>
         <a href="#contact">التواصل</a>
         <a href="#products">المنتجات</a>
-        <a href="#qr">QR</a>
+        <a href="#share">مشاركة</a>
       </nav>
     </div>
   </header>
@@ -125,10 +125,15 @@
           <span>TikTok</span>
           <span class="badge">@username</span>
         </a>
-        <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener" aria-label="Google Maps">
+        <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener" aria-label="Google Maps - Egypt">
           <span>📍</span>
-          <span>Google Maps</span>
-          <span class="badge">الموقع</span>
+          <span>Google Maps - مصر</span>
+          <span class="badge">مصر</span>
+        </a>
+        <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener" aria-label="Google Maps - Hong Kong">
+          <span>📍</span>
+          <span>Google Maps - هونج كونج</span>
+          <span class="badge">هونج كونج</span>
         </a>
       </div>
     </section>
@@ -234,11 +239,33 @@
       </div>
     </section>
 
-    <section id="qr" class="section">
-      <h2>رمز QR</h2>
-      <div class="card qr">
-        <img id="qr-img" src="" alt="QR code" width="200" height="200" loading="lazy">
-        <div class="muted" style="margin-top:8px;">امسح الكود للوصول للصفحة مباشرة</div>
+    <section id="share" class="section">
+      <h2>مشاركة الموقع</h2>
+      <div class="grid cols-3">
+        <div class="card">
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 8px;">📱</div>
+            <div style="font-weight: 600; margin-bottom: 4px;">مشاركة عبر التطبيقات</div>
+            <div class="muted" style="margin-bottom: 12px;">شارك عبر واتساب، تليجرام، وغيرها</div>
+            <button class="btn" id="share-apps">مشاركة</button>
+          </div>
+        </div>
+        <div class="card">
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 8px;">🔗</div>
+            <div style="font-weight: 600; margin-bottom: 4px;">نسخ الرابط</div>
+            <div class="muted" style="margin-bottom: 12px;">انسخ رابط الموقع للحفظ</div>
+            <button class="btn" id="copy-link">نسخ الرابط</button>
+          </div>
+        </div>
+        <div class="card">
+          <div style="text-align: center;">
+            <div style="font-size: 32px; margin-bottom: 8px;">📷</div>
+            <div style="font-weight: 600; margin-bottom: 4px;">حفظ QR كصورة</div>
+            <div class="muted" style="margin-bottom: 12px;">حفظ رمز QR كصورة في الهاتف</div>
+            <button class="btn" id="save-qr">حفظ QR</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -278,11 +305,61 @@
       });
     });
 
-    // QR: استخدم خدمة توليد صور بسيطة لعنوان الصفحة الحالي
-    var qr = document.getElementById("qr-img");
-    if (qr) {
-      var url = window.location.href;
-      qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(url);
+    // Share functionality
+    var shareAppsBtn = document.getElementById("share-apps");
+    var copyLinkBtn = document.getElementById("copy-link");
+    var saveQrBtn = document.getElementById("save-qr");
+
+    if (shareAppsBtn) {
+      shareAppsBtn.addEventListener('click', function() {
+        if (navigator.share) {
+          navigator.share({
+            title: 'ملف تعريفي للأعمال',
+            text: 'صفحة واحدة تضم كل وسائل التواصل والمنتجات',
+            url: window.location.href
+          });
+        } else {
+          // Fallback for browsers that don't support Web Share API
+          var url = window.location.href;
+          var text = "مرحباً، هذا رابط ملفنا التعريفي: " + url;
+          window.open("https://wa.me/?text=" + encodeURIComponent(text), '_blank');
+        }
+      });
+    }
+
+    if (copyLinkBtn) {
+      copyLinkBtn.addEventListener('click', function() {
+        var url = window.location.href;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(url).then(function() {
+            alert('تم نسخ الرابط بنجاح!');
+          });
+        } else {
+          // Fallback for older browsers
+          var textArea = document.createElement("textarea");
+          textArea.value = url;
+          document.body.appendChild(textArea);
+          textArea.select();
+          document.execCommand('copy');
+          document.body.removeChild(textArea);
+          alert('تم نسخ الرابط بنجاح!');
+        }
+      });
+    }
+
+    if (saveQrBtn) {
+      saveQrBtn.addEventListener('click', function() {
+        var url = window.location.href;
+        var qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=" + encodeURIComponent(url);
+        
+        // Create a temporary link to download the QR image
+        var link = document.createElement('a');
+        link.href = qrUrl;
+        link.download = 'qr-code.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
     }
 
     // السنة
