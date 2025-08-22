@@ -1,14 +1,294 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <title>My Profile</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ملف تعريفي للأعمال | Portfolio</title>
+  <meta name="description" content="كل وسائل التواصل، أرقام الهواتف، الإيميلات، والمنتجات الخاصة بنشاطك التجاري في صفحة واحدة.">
+  <meta name="theme-color" content="#0ea5e9">
+  <meta property="og:title" content="ملف تعريفي للأعمال">
+  <meta property="og:description" content="صفحة واحدة تضم كل وسائل التواصل والمنتجات.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <link rel="icon" href="/favicon.png">
+  <style>
+  :root {
+    --bg: #0b1220;
+    --card: #111827;
+    --muted: #9ca3af;
+    --text: #e5e7eb;
+    --brand: #0ea5e9;
+    --brand-2: #22d3ee;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; }
+  a { color: inherit; text-decoration: none; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 24px; }
+  header {
+    position: sticky; top: 0; backdrop-filter: saturate(180%) blur(8px);
+    background: rgba(11,18,32,.6); border-bottom: 1px solid rgba(255,255,255,.06);
+    z-index: 10;
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; }
+  .logo { width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); display: inline-block; }
+  .nav a { padding: 8px 12px; border-radius: 10px; color: var(--muted); }
+  .nav a:hover { background: rgba(255,255,255,.06); color: var(--text); }
+
+  .hero { padding: 40px 0; display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; align-items: center; }
+  .hero h1 { margin: 0 0 8px 0; font-size: 28px; }
+  .hero p { margin: 0; color: var(--muted); }
+  .hero .card { background: linear-gradient(180deg, rgba(34,211,238,.1), rgba(14,165,233,.08)); border: 1px solid rgba(255,255,255,.08); }
+
+  .grid { display: grid; gap: 16px; }
+  .grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  @media (max-width: 900px) { .hero { grid-template-columns: 1fr; } .grid.cols-3 { grid-template-columns: 1fr; } .grid.cols-2 { grid-template-columns: 1fr; } }
+
+  .card { border-radius: 16px; border: 1px solid rgba(255,255,255,.06); background: var(--card); padding: 16px; }
+  .section { padding: 16px 0 8px; }
+  .section h2 { font-size: 20px; margin: 0 0 12px; }
+  .muted { color: var(--muted); }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #001018; font-weight: 600; border: 0; cursor: pointer; }
+  .btn.secondary { background: transparent; color: var(--text); border: 1px solid rgba(255,255,255,.12); }
+  .list { display: grid; gap: 10px; }
+  .list a { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.06); }
+  .list a:hover { background: rgba(255,255,255,.07); }
+  .badge { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: rgba(255,255,255,.08); color: var(--muted); }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .product { display: grid; grid-template-columns: 100px 1fr; gap: 12px; align-items: center; }
+  .product img { width: 100%; height: 100px; object-fit: cover; border-radius: 12px; border: 1px solid rgba(255,255,255,.06); }
+  footer { padding: 24px; color: var(--muted); text-align: center; }
+  .qr { display: grid; place-items: center; }
+  </style>
 </head>
 <body>
-  <h1>أهلاً بيك</h1>
-  <p>دي صفحتي الشخصية</p>
-  <p>📞 رقمي: 0123456789</p>
-  <p>📍 العنوان: Port Said, Egypt</p>
-  <p>🔗 <a href="https://instagram.com/username">Instagram</a></p>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo"></span>
+        <span>اسم النشاط التجاري</span>
+      </div>
+      <nav class="row" style="gap: 4px;">
+        <a href="#socials">روابط التواصل</a>
+        <a href="#contact">التواصل</a>
+        <a href="#products">المنتجات</a>
+        <a href="#qr">QR</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card">
+        <h1>مرحباً بك في ملفنا التعريفي</h1>
+        <p>هنا ستجد كل وسائل التواصل والمنتجات الخاصة بنا في مكان واحد.</p>
+        <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+          <a class="btn" id="whatsapp-cta" href="#" target="_blank" rel="noopener">تواصل واتساب</a>
+          <a class="btn secondary" href="#products">تصفح المنتجات</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="row">
+          <div>
+            <div class="badge">العنوان</div>
+            <div>Port Said, Egypt</div>
+          </div>
+          <div>
+            <div class="badge">ساعات العمل</div>
+            <div>09:00 - 18:00</div>
+          </div>
+          <div>
+            <div class="badge">الشحن</div>
+            <div>داخل مصر</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="socials" class="section">
+      <h2>روابط وسائل التواصل</h2>
+      <div class="card list">
+        <a href="https://instagram.com/username" target="_blank" rel="noopener" aria-label="Instagram">
+          <span>📸</span>
+          <span>Instagram</span>
+          <span class="badge">@username</span>
+        </a>
+        <a href="https://facebook.com/username" target="_blank" rel="noopener" aria-label="Facebook">
+          <span>📘</span>
+          <span>Facebook</span>
+          <span class="badge">/username</span>
+        </a>
+        <a href="https://tiktok.com/@username" target="_blank" rel="noopener" aria-label="TikTok">
+          <span>🎵</span>
+          <span>TikTok</span>
+          <span class="badge">@username</span>
+        </a>
+        <a href="https://maps.app.goo.gl/" target="_blank" rel="noopener" aria-label="Google Maps">
+          <span>📍</span>
+          <span>Google Maps</span>
+          <span class="badge">الموقع</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <h2>التواصل</h2>
+      <div class="grid cols-2">
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="badge">هاتف</div>
+              <div style="font-weight: 700;">0123456789</div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <a class="btn secondary" href="tel:0123456789">اتصال</a>
+              <a class="btn secondary" id="wa-1" href="#" target="_blank" rel="noopener">واتساب</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="badge">هاتف إضافي</div>
+              <div style="font-weight: 700;">0100000000</div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <a class="btn secondary" href="tel:0100000000">اتصال</a>
+              <a class="btn secondary" id="wa-2" href="#" target="_blank" rel="noopener">واتساب</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="badge">بريد إلكتروني</div>
+              <div style="font-weight: 700;">business@example.com</div>
+            </div>
+            <div style="display:flex; gap:8px;">
+              <a class="btn secondary" href="mailto:business@example.com">إيميل</a>
+              <a class="btn secondary" href="mailto:business@example.com?subject=استفسار&body=مرحباً">نموذج سريع</a>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="badge">موقع إلكتروني</div>
+              <div style="font-weight: 700;">yourdomain.com</div>
+            </div>
+            <div>
+              <a class="btn" href="https://yourdomain.com" target="_blank" rel="noopener">زيارة الموقع</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="products" class="section">
+      <h2>منتجاتنا</h2>
+      <div class="grid cols-3">
+        <div class="card product">
+          <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=800&auto=format&fit=crop" alt="منتج 1">
+          <div>
+            <div class="row">
+              <strong>منتج 1</strong>
+              <span class="badge">250 EGP</span>
+            </div>
+            <div class="muted" style="margin: 6px 0 10px;">وصف مختصر للمنتج.</div>
+            <div style="display:flex; gap:8px;">
+              <a class="btn" href="#" data-wa-product="منتج 1" data-wa-price="250">طلب واتساب</a>
+              <a class="btn secondary" href="#">تفاصيل</a>
+            </div>
+          </div>
+        </div>
+        <div class="card product">
+          <img src="https://images.unsplash.com/photo-1479064555552-3ef4979f8908?q=80&w=800&auto=format&fit=crop" alt="منتج 2">
+          <div>
+            <div class="row">
+              <strong>منتج 2</strong>
+              <span class="badge">400 EGP</span>
+            </div>
+            <div class="muted" style="margin: 6px 0 10px;">وصف مختصر للمنتج.</div>
+            <div style="display:flex; gap:8px;">
+              <a class="btn" href="#" data-wa-product="منتج 2" data-wa-price="400">طلب واتساب</a>
+              <a class="btn secondary" href="#">تفاصيل</a>
+            </div>
+          </div>
+        </div>
+        <div class="card product">
+          <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?q=80&w=800&auto=format&fit=crop" alt="منتج 3">
+          <div>
+            <div class="row">
+              <strong>منتج 3</strong>
+              <span class="badge">150 EGP</span>
+            </div>
+            <div class="muted" style="margin: 6px 0 10px;">وصف مختصر للمنتج.</div>
+            <div style="display:flex; gap:8px;">
+              <a class="btn" href="#" data-wa-product="منتج 3" data-wa-price="150">طلب واتساب</a>
+              <a class="btn secondary" href="#">تفاصيل</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="qr" class="section">
+      <h2>رمز QR</h2>
+      <div class="card qr">
+        <img id="qr-img" src="" alt="QR code" width="200" height="200" loading="lazy">
+        <div class="muted" style="margin-top:8px;">امسح الكود للوصول للصفحة مباشرة</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> اسم النشاط التجاري. جميع الحقوق محفوظة.
+  </footer>
+
+  <script>
+  (function() {
+    var primaryPhone = "0123456789"; // عدل الرقم حسب نشاطك
+    var secondaryPhone = "0100000000";
+
+    function buildWhatsAppLink(phone, text) {
+      var msg = text || "مرحباً، أود الاستفسار";
+      return "https://wa.me/" + phone.replace(/[^0-9]/g, "") + "?text=" + encodeURIComponent(msg);
+    }
+
+    // بطل الصفحة
+    var heroBtn = document.getElementById("whatsapp-cta");
+    if (heroBtn) heroBtn.href = buildWhatsAppLink(primaryPhone, "مرحباً، وصلتكم من صفحة البروفايل.");
+
+    // أزرار واتساب للهواتف
+    var wa1 = document.getElementById("wa-1");
+    if (wa1) wa1.href = buildWhatsAppLink(primaryPhone);
+    var wa2 = document.getElementById("wa-2");
+    if (wa2) wa2.href = buildWhatsAppLink(secondaryPhone);
+
+    // طلب واتساب من بطاقات المنتجات
+    document.querySelectorAll('[data-wa-product]').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        var name = btn.getAttribute('data-wa-product');
+        var price = btn.getAttribute('data-wa-price');
+        var text = "مرحباً، أود طلب المنتج: " + name + " بسعر " + price + " EGP";
+        window.open(buildWhatsAppLink(primaryPhone, text), '_blank');
+      });
+    });
+
+    // QR: استخدم خدمة توليد صور بسيطة لعنوان الصفحة الحالي
+    var qr = document.getElementById("qr-img");
+    if (qr) {
+      var url = window.location.href;
+      qr.src = "https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=" + encodeURIComponent(url);
+    }
+
+    // السنة
+    var year = document.getElementById('year');
+    if (year) year.textContent = new Date().getFullYear();
+  })();
+  </script>
 </body>
 </html>
